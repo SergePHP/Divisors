@@ -44,7 +44,7 @@ print_r($temp_dev);
 	    }
 	}
 	$flag = true;
-	for($i = 3; $i <= $topBorder and ($flag); $i++, $i++){
+	for($i = 3; $i <= $topBorder and ($flag); $i += 2){
 	    if($num % $i) {continue;}
 	    else {
 		$GLOBALS['temp_dev'][]  = $i;
