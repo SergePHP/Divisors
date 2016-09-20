@@ -5,8 +5,7 @@ require('divisors.php');
 
 $a = new Devisors();
 $a->setNumber(576353448621);
-$a->getDevisors();
-var_dump($a);
+var_dump($a->getDevisors());
 exit;
 
 require_once __DIR__.'/form.php';

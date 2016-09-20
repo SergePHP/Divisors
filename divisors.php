@@ -10,7 +10,8 @@ class Devisors{
 	}
 	public function getDevisors(){
 	    $this->getSimpleMultiplicators($this->n);
-	    return $this->defineDivisors();
+	    $this->defineDivisors();
+            return $this->divisors;
 	}
 	private function defineDivisors(){
 	    $this->divisors[] = 1;
