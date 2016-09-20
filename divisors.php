@@ -1,33 +1,39 @@
 <?php
 
-$f = $_POST['from'] * 1;
-$t = $_POST['to']   * 1;
-if(($t - $f) < 0) exit;
+class Devisors{
 
-$sq = array(); // array of resulting numbers
+    public $temp_dev;
+    private $n, $s_multi;
 
-for ($j = 0; $f <= $t ; $f++){
+	function __construct($n) {
+	    $this->n = $n;
+	}
+	public function getDevisors(){
+	    $this->getSimpleMultiplicators($this->n);
+	}
+        private function getSimpleMultiplicators($num){
 
-    $temp_dev = [];
-    $temp_pow = array();
-    $temp_sum = 0;
-    for ($i = 1; $i <= $f; $i++){
-        if($f % $i) continue;
-        $temp_dev[] = $i;
-    }
-    foreach($temp_dev as $item){
-        $pow = $item**2;
-        $temp_pow[] = $pow;
-        $temp_sum += $pow;
-    }
-    $sqrt_num = sqrt($temp_sum);
+	$topBorder = ceil(sqrt($num));
 
-    if(!($sqrt_num - floor($sqrt_num))){
-        $sq[$j][0] = $f;
-        $sq[$j][1] = $temp_sum;
-        $sq[$j][2] = $temp_pow;
-        $j++;
+	while(!($num % 2)) {
+		$this->s_multi[]  = 2;
+		$num = $num / 2;
+	}
+	$flag = true;
+	for($i = 3; $i <= $topBorder and ($flag); $i += 2){
+	    if($num % $i) {
+                continue;
+            }
+	    else {
+		$this->s_multi[]  = $i;
+		$flag = false;
+		self::getSimpleMultiplicators($num / $i);
+	    }
+	}
+	if ($flag) {
+            $this->s_multi[] = $num;
+        }
     }
 }
-print_r($temp_dev);
 
+?>
