@@ -3,7 +3,7 @@
 
 require('divisors.php');
 
-$a = new Devisors(12);
+$a = new Devisors(42);
 $a->getDevisors();
 var_dump($a);
 exit;
