@@ -2,7 +2,7 @@
 
 class Devisors{
 
-    public $divisors;
+    private $divisors;
     private $n, $s_multi;
 
 	public function setNumber($n){
@@ -10,19 +10,25 @@ class Devisors{
 	}
 	public function getDevisors(){
 	    $this->getSimpleMultiplicators($this->n);
-	    $this->defineDivisors();
+	    return $this->defineDivisors();
 	}
 	private function defineDivisors(){
 	    $this->divisors[] = 1;
-	    $i = count($this->s_multi);	    
-	    foreach ($this->s_multi as $item){
-		$this->divisors[] = $item;
-		for($j = 1; $j <= $i; $j++){
-		    
-		}
+            $this->divisors[] = array_product($this->s_multi);
+	    $i = count($this->s_multi)-1;
+            for($j = 0; $j < $i; $j++){
+                $item = array_shift($this->s_multi);
+                if(!array_search($item, $this->divisors)){
+                    $this->divisors[] = $item;
+                    foreach ($this->s_multi as $var){
+                        $multi = $item * $var;
+                        if(!array_search($multi, $this->divisors)){
+                        $this->divisors[] = $multi;
+                        }
+                    }
+                }
 	    }
-
-
+            sort($this->divisors);
 	}
         private function getSimpleMultiplicators($num){
 	$topBorder = ceil(sqrt($num));

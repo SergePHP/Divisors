@@ -4,7 +4,7 @@
 require('divisors.php');
 
 $a = new Devisors();
-$a->setNumber(81);
+$a->setNumber(576353448621);
 $a->getDevisors();
 var_dump($a);
 exit;
