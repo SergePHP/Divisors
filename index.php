@@ -3,7 +3,8 @@
 
 require('divisors.php');
 
-$a = new Devisors(42);
+$a = new Devisors();
+$a->setNumber(81);
 $a->getDevisors();
 var_dump($a);
 exit;

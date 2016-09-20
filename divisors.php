@@ -2,14 +2,27 @@
 
 class Devisors{
 
-    public $temp_dev;
+    public $divisors;
     private $n, $s_multi;
 
-	function __construct($n) {
+	public function setNumber($n){
 	    $this->n = $n;
 	}
 	public function getDevisors(){
 	    $this->getSimpleMultiplicators($this->n);
+	    $this->defineDivisors();
+	}
+	private function defineDivisors(){
+	    $this->divisors[] = 1;
+	    $i = count($this->s_multi);	    
+	    foreach ($this->s_multi as $item){
+		$this->divisors[] = $item;
+		for($j = 1; $j <= $i; $j++){
+		    
+		}
+	    }
+
+
 	}
         private function getSimpleMultiplicators($num){
 	$topBorder = ceil(sqrt($num));
