@@ -2,10 +2,11 @@
 
 class Devisors{
 
-	private $divisors, $n, $s_multi;
+	private $divisors, $n, $simpleMultiplicatorsList, $simpleNumberList;
 
-	public function setNumber($n){
+	function __construct($n) {
 	    $this->n = $n;
+	    $this->getSimple((ceil(sqrt($this->n)) - 1)/2);
 	}
 	public function getDevisors(){
 	    $this->getSimpleMultiplicators($this->n);
@@ -14,13 +15,13 @@ class Devisors{
 	}
 	private function defineDivisors(){
 	    $this->divisors[] = 1;
-            $this->divisors[] = array_product($this->s_multi);
-	    $i = count($this->s_multi)-1;
+            $this->divisors[] = array_product($this->simpleMultiplicatorsList);
+	    $i = count($this->simpleMultiplicatorsList)-1;
             for($j = 0; $j < $i; $j++){
-                $item = array_shift($this->s_multi);
+                $item = array_shift($this->simpleMultiplicatorsList);
                 if(!array_search($item, $this->divisors)){
                     $this->divisors[] = $item;
-                    foreach ($this->s_multi as $var){
+                    foreach ($this->simpleMultiplicatorsList as $var){
                         $multi = $item * $var;
                         if(!array_search($multi, $this->divisors)){
                         $this->divisors[] = $multi;
@@ -31,26 +32,47 @@ class Devisors{
             sort($this->divisors);
 	}
         private function getSimpleMultiplicators($num){
-	$topBorder = ceil(sqrt($num));
-	while(!($num % 2)) {
-		$this->s_multi[]  = 2;
-		$num = $num / 2;
-	}
-	$flag = true;
-	for($i = 3; $i <= $topBorder && $flag; $i += 2){
-	    if($num % $i) { continue; }
-	    else {
-		$this->s_multi[]  = $i;
-		$flag = false;
-		self::getSimpleMultiplicators($num / $i);
+	    $topBorder = ceil(sqrt($num));
+
+	    $flag = true;
+	    for($i = 0; $this->simpleNumberList[$i] <= $topBorder && $flag; $i++){
+		if($num % $this->simpleNumberList[$i]) { continue; }
+		else {
+		    $this->simpleMultiplicatorsList[]  = $this->simpleNumberList[$i];
+		    $flag = false;
+		    self::getSimpleMultiplicators($num / $this->simpleNumberList[$i]);
+		}
+	    }
+	    if ($flag) {
+		if ($num !== 1) {
+		$this->simpleMultiplicatorsList[] = $num;
+		}
 	    }
 	}
-	if ($flag) {
-	    if ($num !== 1) {
-            $this->s_multi[] = $num;
+	private function getSimple($lenght){
+
+	    // Sundarama method
+	    
+	    $orig = [];
+	    $forDelete = [];
+
+	    for ($a = 1; $a <= $lenght; $a++){
+		$orig[] = $a;
 	    }
-        }
-    }
+	    for ($i = 1, $j = 1, $t = $i + $j + (2 * $i * $j); $t <= $lenght; 
+		$i++, $j = $i, $t = $i + $j + (2 * $i * $j)){
+		for (; $t <= $lenght; $j++, $t = $i + $j + (2 * $i * $j)){
+			$forDelete[] = $t;
+		}
+	    }
+	    $almostRes = array_diff($orig, $forDelete);
+	    foreach ($almostRes as $v){
+		$result[] = $v * 2 + 1;
+	    }
+	    $result[] = 2;
+	    sort($result);
+	    $this->simpleNumberList = $result;
+	}
 }
 
 ?>
