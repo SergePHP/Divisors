@@ -2,21 +2,30 @@
     
     $lenght = 50;
     
-    $i = [];
-    $j = [];
+    $orig = [];
+    $forDelete = [];
     
-    for ($a = 1; $a <= $lenght; $a++){
-	$i[] = $a;
+    for ($a = 1; $a < $lenght; $a++){
+	$orig[] = $a;
     }
-
-    for ($x = 0, $t = $i[$x] + $i[$x] + 2 * $i[$x] * $i[$x]; $t <= $lenght; 
-	$x++, $t = $i[$x] + $i[$x] + 2 * $i[$x] * $i[$x]){
-	for ($y = $i[$x], $q = $i[$x] + $y + 2 * $i[$x] * $y; $q <= $lenght; 
-	    $y++, $q = $i[$x] + $y + 2 * $i[$x] * $y){
-		$j[] = $q;
+    for ($i = 1, $j = 1, $t = $i + $j + (2 * $i * $j); $t <= $lenght; 
+	$i++, $j = $i, $t = $i + $j + (2 * $i * $j)){
+	for (; $t <= $lenght; $j++, $t = $i + $j + (2 * $i * $j)){
+		$forDelete[] = $t;
 	}
     }
-    $r = array_diff($i, $j);
+    
+    
+    
+    
+//    for ($x = 0, $t = $i[$x] + $i[$x] + 2 * $i[$x] * $i[$x]; $t <= $lenght; 
+//	$x++, $t = $i[$x] + $i[$x] + 2 * $i[$x] * $i[$x]){
+//	for ($y = $i[$x], $q = $i[$x] + $y + 2 * $i[$x] * $y; $q <= $lenght; 
+//	    $y++, $q = $i[$x] + $y + 2 * $i[$x] * $y){
+//		$j[] = $q;
+//	}
+//    }
+    $r = array_diff($orig, $forDelete);
     foreach ($r as $v){
 	$result[] = $v * 2 + 1;
     }
