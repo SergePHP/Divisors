@@ -17,19 +17,10 @@ class Divisors{
 	}
 	private function defineDivisors(){
 	    $this->divisors[] = 1;
-            $this->divisors[] = array_product($this->simpleMultiplicatorsList);
-	    $i = count($this->simpleMultiplicatorsList)-1;
-            for($j = 0; $j <= $i; $j++){
-                $item = array_shift($this->simpleMultiplicatorsList);
-                if(!array_search($item, $this->divisors)){
-                    $this->divisors[] = $item;
-                    foreach ($this->simpleMultiplicatorsList as $var){
-                        $multi = $item * $var;
-                        if(!array_search($multi, $this->divisors)){
-                        $this->divisors[] = $multi;
-                        }
-                    }
-                }
+ 	    $i = count($this->simpleMultiplicatorsList);
+ 
+            for($j = 0; $j < $i; $j++){
+                
 	    }
             sort($this->divisors);
 	}
