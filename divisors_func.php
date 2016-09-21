@@ -1,7 +1,7 @@
 <?php
 
-$f = $_POST['from'] * 1;
-$t = $_POST['to']   * 1;
+$f = $_POST['m'] * 1;
+$t = $_POST['n']   * 1;
 if(($t - $f) < 0) exit;
 
 $sq = array(); // array of resulting numbers
@@ -29,5 +29,5 @@ for ($j = 0; $f <= $t ; $f++){
         $j++;
     }
 }
-print_r($temp_dev);
+print_r($sq);
 

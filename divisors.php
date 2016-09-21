@@ -5,11 +5,8 @@ class Divisors{
 	private $divisors, $m;
 	private $simpleMultiplicatorsList, $simpleNumberList;
 
-	public function setNumber($m){
+	function __construct($m){
 	    $this->m = $m;
-	    $this->divisors = [];
-	    $this->simpleMultiplicatorsList = [];
-	    $this->simpleNumberList = [];
 	    $this->getSimple((ceil(sqrt($this->m)) - 1)/2);
 	}
 
@@ -37,10 +34,10 @@ class Divisors{
             sort($this->divisors);
 	}
         private function getSimpleMultiplicators($num){
-	    $topBorder = ceil(sqrt($num));
+	    $topBorder = count($this->simpleNumberList);
 
 	    $flag = true;
-	    for($i = 0; $this->simpleNumberList[$i] < $topBorder && $flag; $i++){
+	    for($i = 0; $i < $topBorder && $flag; $i++){
 		if($num % $this->simpleNumberList[$i]) { continue; }
 		else {
 		    $this->simpleMultiplicatorsList[]  = $this->simpleNumberList[$i];
