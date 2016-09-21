@@ -2,8 +2,7 @@
 
 class Devisors{
 
-    private $divisors;
-    private $n, $s_multi;
+	private $divisors, $n, $s_multi;
 
 	public function setNumber($n){
 	    $this->n = $n;
