@@ -1,15 +1,20 @@
 <?php
 
-class Devisors{
+class Divisors{
 
-	private $divisors, $n, $simpleMultiplicatorsList, $simpleNumberList;
+	private $divisors, $m;
+	private $simpleMultiplicatorsList, $simpleNumberList;
 
-	function __construct($n) {
-	    $this->n = $n;
-	    $this->getSimple((ceil(sqrt($this->n)) - 1)/2);
+	public function setNumber($m){
+	    $this->m = $m;
+	    $this->divisors = [];
+	    $this->simpleMultiplicatorsList = [];
+	    $this->simpleNumberList = [];
+	    $this->getSimple((ceil(sqrt($this->m)) - 1)/2);
 	}
+
 	public function getDevisors(){
-	    $this->getSimpleMultiplicators($this->n);
+	    $this->getSimpleMultiplicators($this->m);
 	    $this->defineDivisors();
             return $this->divisors;
 	}
@@ -17,7 +22,7 @@ class Devisors{
 	    $this->divisors[] = 1;
             $this->divisors[] = array_product($this->simpleMultiplicatorsList);
 	    $i = count($this->simpleMultiplicatorsList)-1;
-            for($j = 0; $j < $i; $j++){
+            for($j = 0; $j <= $i; $j++){
                 $item = array_shift($this->simpleMultiplicatorsList);
                 if(!array_search($item, $this->divisors)){
                     $this->divisors[] = $item;
@@ -35,7 +40,7 @@ class Devisors{
 	    $topBorder = ceil(sqrt($num));
 
 	    $flag = true;
-	    for($i = 0; $this->simpleNumberList[$i] <= $topBorder && $flag; $i++){
+	    for($i = 0; $this->simpleNumberList[$i] < $topBorder && $flag; $i++){
 		if($num % $this->simpleNumberList[$i]) { continue; }
 		else {
 		    $this->simpleMultiplicatorsList[]  = $this->simpleNumberList[$i];

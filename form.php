@@ -8,8 +8,8 @@
     </head>
     <body>
         <form action="index.php" method="post">
-        Введите диапазон значений от: <input type="text" name="from" /> до
-            <input type="text" name="to" /><br />
+        Введите диапазон значений от: <input type="text" name="m" /> до
+            <input type="text" name="n" /><br />
         <input type="submit" value="Отправить!" />
 </form>
     </body>
