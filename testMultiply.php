@@ -1,7 +1,7 @@
 <?php
 
 
-    $sml = [2,3,7];
+    $sml = [2,3,4,5];
     $divisors = [];
     $i = count($sml)-1;
 
@@ -10,22 +10,21 @@
     for($j = 0; $j <= $i; $j++){
         
         for($m = $j + 1; $m <= $i; $m++){
-            $divisors[] = $sml[$j]*$sml[$m];
+            echo $sml[$j].$sml[$m]."<br>";
         }
         for($m = $j + 1; $m <= $i; $m++){
             for($k = $m + 1; $k <= $i; $k++){
-                $temp = 1;
                 for($n = $j; $n <= $m; $n++){
-                        $temp *= $sml[$n];
+                        echo $sml[$n];
                 }
-                $divisors[] = $temp * $sml[$k];
+                echo $sml[$k]."<br>";
             }
          }
     }
     
     
 //    sort($divisors);
-    print_r($divisors);
+//    print_r($divisors);
 
 
 ?>
