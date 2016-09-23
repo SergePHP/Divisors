@@ -17,11 +17,26 @@ class Divisors{
 	}
 	private function defineDivisors(){
 	    $this->divisors[] = 1;
- 	    $i = count($this->simpleMultiplicatorsList);
+ 	    $i = count($this->simpleMultiplicatorsList)-1;
  
-            for($j = 0; $j < $i; $j++){
-                
-	    }
+        for($j = 0; $j <= $i; $j++){
+
+            for($m = $j + 1; $m <= $i; $m++){
+                $this->divisors[] = $this->simpleMultiplicatorsList[$j]*
+                        $this->simpleMultiplicatorsList[$m];
+            }
+            for($m = $j + 1; $m <= $i; $m++){
+                for($k = $m + 1; $k <= $i; $k++){
+                    $temp = 1;
+                    for($n = $j; $n <= $m; $n++){
+                            $temp *= $this->simpleMultiplicatorsList[$n];
+                    }
+                    $this->divisors[] = $temp * $this->simpleMultiplicatorsList[$k];
+                }
+             }
+        }
+            $this->divisors = array_merge($this->divisors, $this->simpleMultiplicatorsList);
+            $this->divisors = array_unique($this->divisors);
             sort($this->divisors);
 	}
         private function getSimpleMultiplicators($num){

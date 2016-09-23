@@ -34,9 +34,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'
 	    }
 }
 exit;
-$a = new Devisors(42);
-var_dump($a->getDevisors());
-exit;
+//$a = new Divisors(510);
+//var_dump($a->getDevisors());
+//exit;
 
 require_once __DIR__.'/form.php';
 
