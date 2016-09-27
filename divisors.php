@@ -46,8 +46,8 @@ class Divisors{
 	    for($i = 0; $i < $topBorder && $flag; $i++){
 		if($num % $this->simpleNumberList[$i]) { continue; }
 		else {
+		    $flag = false;		    
 		    $this->simpleMultiplicatorsList[]  = $this->simpleNumberList[$i];
-		    $flag = false;
 		    self::getSimpleMultiplicators($num / $this->simpleNumberList[$i]);
 		}
 	    }
@@ -61,25 +61,26 @@ class Divisors{
 
 	    // Sundarama method
 	    
-	    $orig = [];
-	    $forDelete = [];
+	    $forDelete = [];	    
+	    $orig = range(1, $lenght);
 
-	    for ($a = 1; $a <= $lenght; $a++){
-		$orig[] = $a;
-	    }
+//	    for ($a = 1; $a <= $lenght; $a++){
+//		$orig[] = $a;
+//	    }
 	    for ($i = 1, $j = 1, $t = $i + $j + (2 * $i * $j); $t <= $lenght; 
 		$i++, $j = $i, $t = $i + $j + (2 * $i * $j)){
 		for (; $t <= $lenght; $j++, $t = $i + $j + (2 * $i * $j)){
 			$forDelete[] = $t;
 		}
 	    }
-	    $almostRes = array_diff($orig, $forDelete);
-	    foreach ($almostRes as $v){
-		$result[] = $v * 2 + 1;
-	    }
+	    $result = array_diff($orig, $forDelete);
+	    $result = array_map('self::makeSimple', $result);
 	    $result[] = 2;
 	    sort($result);
 	    $this->simpleNumberList = $result;
+	}
+	private static function makeSimple($var){
+	    return $var * 2 + 1;
 	}
 }
 
