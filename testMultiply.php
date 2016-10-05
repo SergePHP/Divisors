@@ -1,20 +1,10 @@
 <?php
     $sml = [2,3,4,5,6];
-
-
-//    $m = 3;
     echo cComb(count($sml)).'<br>';
-//    echo nmComb(sizeof($sml), $m);
-
     $divisors = [];
     $lenghtOfarray = count($sml)-1;
     $c = 1;
-//    $m = 2;
-//    $cc = nmComb(sizeof($slm), $m);
-//
-//    for ($mIndex = 0; ; $mIndex++){
-//        
-//    }
+
     for($mainIndex = 0; $mainIndex <= $lenghtOfarray; $mainIndex++){
         for($secondIndex = $mainIndex + 1; $secondIndex <= $lenghtOfarray; $secondIndex++, $c++){
             echo $c.': '.$sml[$mainIndex].$sml[$secondIndex]."<br>";
@@ -27,24 +17,27 @@
                 }
                 echo $sml[$thirdIndex]."<br>";
             }
-        }
+        } if ($lenghtOfarray <= 2) {continue;}
+        
         for($newIndex = $mainIndex + 2; $newIndex <= $lenghtOfarray; $newIndex++){
-            for($secondIndex = $newIndex + 1; $secondIndex <= $lenghtOfarray; $secondIndex++, $c++){
-                for($thirdIndex = $secondIndex + 1; $thirdIndex <= $lenghtOfarray; $thirdIndex++, $c++){
-                    echo $c.': '.$sml[$mainIndex];
-                    for($i = $newIndex; $i <= $secondIndex; $i++){
-                        echo $sml[$i];
-                    }
-                    echo $sml[$thirdIndex]."<br>";
+            for($secondIndex = $newIndex; $secondIndex <= $lenghtOfarray; $secondIndex++, $c++){
+//                echo $c.': '.$sml[$mainIndex];
+//                    $i = $newIndex;                
+//                    do {
+//                    echo $sml[$i];
+//                    $i++;
+//                } while ($i <= $secondIndex);
+//                echo "<br>";
+                $i = $newIndex; 
+                echo $c.': '.$sml[$mainIndex]; 
+                while ($i <= $secondIndex){
+                    echo $sml[$i];
+                    $i++;
                 }
+                echo "<br>";
             }
         }
-
     }
-
-//    sort($divisors);
-//    print_r($divisors);
-    
     
     function factorial($var){
         if (!$var || $var === 1) {return 1;}
