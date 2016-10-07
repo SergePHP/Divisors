@@ -1,40 +1,32 @@
 <?php
-    $sml = [2,3,4,5,6];
-    echo cComb(count($sml)).'<br>';
+    $s = [2,3,4,5,6];
+    echo cComb(count($s)).'<br>';
     $divisors = [];
-    $lenghtOfarray = count($sml)-1;
+    $lenghtOfarray = count($s)-1;
     $c = 1;
 
     for($mainIndex = 0; $mainIndex <= $lenghtOfarray; $mainIndex++){
-        for($secondIndex = $mainIndex + 1; $secondIndex <= $lenghtOfarray; $secondIndex++, $c++){
-            echo $c.': '.$sml[$mainIndex].$sml[$secondIndex]."<br>";
-        }
-        for($secondIndex = $mainIndex + 1; $secondIndex <= $lenghtOfarray; $secondIndex++){
-            for($thirdIndex = $secondIndex + 1; $thirdIndex <= $lenghtOfarray; $thirdIndex++, $c++){
-                echo $c.': ';
-                for($i = $mainIndex; $i <= $secondIndex; $i++){
-                    echo $sml[$i];
-                }
-                echo $sml[$thirdIndex]."<br>";
-            }
-        } if ($lenghtOfarray <= 2) {continue;}
+//        for($secondIndex = $mainIndex + 1; $secondIndex <= $lenghtOfarray; $secondIndex++, $c++){
+//            echo $c.': '.$s[$mainIndex].$s[$secondIndex]."<br>";
+//        }
+//        for($secondIndex = $mainIndex + 1; $secondIndex <= $lenghtOfarray; $secondIndex++){
+//            for($thirdIndex = $secondIndex + 1; $thirdIndex <= $lenghtOfarray; $thirdIndex++, $c++){
+//                echo $c.': ';
+//                for($i = $mainIndex; $i <= $secondIndex; $i++){
+//                    echo $s[$i];
+//                }
+//                echo $s[$thirdIndex]."<br>";
+//            }
+//        } 
+        if ($lenghtOfarray <= 2) {continue;}
         
-        for($newIndex = $mainIndex + 2; $newIndex <= $lenghtOfarray; $newIndex++){
-            for($secondIndex = $newIndex; $secondIndex <= $lenghtOfarray; $secondIndex++, $c++){
-//                echo $c.': '.$sml[$mainIndex];
-//                    $i = $newIndex;                
-//                    do {
-//                    echo $sml[$i];
-//                    $i++;
-//                } while ($i <= $secondIndex);
-//                echo "<br>";
-                $i = $newIndex; 
-                echo $c.': '.$sml[$mainIndex]; 
-                while ($i <= $secondIndex){
-                    echo $sml[$i];
-                    $i++;
-                }
-                echo "<br>";
+        for($secondIndex = $mainIndex + 2; $secondIndex <= $lenghtOfarray; $secondIndex++){
+            for($thirdIndex = $secondIndex + 1, $leadIndex = $secondIndex + 1; $leadIndex <= $lenghtOfarray; $leadIndex++){
+		echo $s[$mainIndex];
+
+		echo $s[$secondIndex];
+		echo $s[$leadIndex];
+
             }
         }
     }

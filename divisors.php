@@ -61,7 +61,7 @@ class Divisors{
 
 	    // Sundarama method
 	    
-	    $forDelete = [];	    
+	    $tmp = [];	    
 	    $orig = range(1, $lenght);
 
 //	    for ($a = 1; $a <= $lenght; $a++){
@@ -70,10 +70,10 @@ class Divisors{
 	    for ($i = 1, $j = 1, $t = $i + $j + (2 * $i * $j); $t <= $lenght; 
 		$i++, $j = $i, $t = $i + $j + (2 * $i * $j)){
 		for (; $t <= $lenght; $j++, $t = $i + $j + (2 * $i * $j)){
-			$forDelete[] = $t;
+			$tmp[] = $t;
 		}
 	    }
-	    $result = array_diff($orig, $forDelete);
+	    $result = array_diff($orig, $tmp);
 	    $result = array_map('self::makeSimple', $result);
 	    $result[] = 2;
 	    sort($result);
