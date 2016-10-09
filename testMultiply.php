@@ -6,31 +6,33 @@
     $c = 1;
 
     for($mainIndex = 0; $mainIndex <= $lenghtOfarray; $mainIndex++){
-//        for($secondIndex = $mainIndex + 1; $secondIndex <= $lenghtOfarray; $secondIndex++, $c++){
-//            echo $c.': '.$s[$mainIndex].$s[$secondIndex]."<br>";
-//        }
-//        for($secondIndex = $mainIndex + 1; $secondIndex <= $lenghtOfarray; $secondIndex++){
-//            for($thirdIndex = $secondIndex + 1; $thirdIndex <= $lenghtOfarray; $thirdIndex++, $c++){
-//                echo $c.': ';
-//                for($i = $mainIndex; $i <= $secondIndex; $i++){
-//                    echo $s[$i];
-//                }
-//                echo $s[$thirdIndex]."<br>";
-//            }
-//        } 
+        for($secondIndex = $mainIndex + 1; $secondIndex <= $lenghtOfarray; $secondIndex++, $c++){
+            echo $c.': '.$s[$mainIndex].$s[$secondIndex]."<br>";
+        }
+        for($secondIndex = $mainIndex + 1; $secondIndex <= $lenghtOfarray; $secondIndex++){
+            for($thirdIndex = $secondIndex + 1; $thirdIndex <= $lenghtOfarray; $thirdIndex++, $c++){
+                echo $c.': ';
+                for($i = $mainIndex; $i <= $secondIndex; $i++){
+                    echo $s[$i];
+                }
+                echo $s[$thirdIndex]."<br>";
+            }
+        }
         if ($lenghtOfarray <= 2) {continue;}
-        
+
         for($secondIndex = $mainIndex + 2; $secondIndex <= $lenghtOfarray; $secondIndex++){
-            for($thirdIndex = $secondIndex + 1, $leadIndex = $secondIndex + 1; $leadIndex <= $lenghtOfarray; $leadIndex++){
-		echo $s[$mainIndex];
-
-		echo $s[$secondIndex];
-		echo $s[$leadIndex];
-
+            for($thirdIndex = $secondIndex; $thirdIndex <= $lenghtOfarray; $thirdIndex++){
+                for($fourthIndex = $thirdIndex + 1; $fourthIndex <= $lenghtOfarray; $fourthIndex++, $c++){
+                    echo $c.': '.$s[$mainIndex];
+                    for($i = $secondIndex; $i <= $thirdIndex; $i++){
+                        echo $s[$i];
+                    }
+                    echo $s[$fourthIndex].'<br>';
+                }
             }
         }
     }
-    
+
     function factorial($var){
         if (!$var || $var === 1) {return 1;}
         return array_product(range(1, $var));
